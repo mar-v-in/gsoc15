@@ -3,7 +3,7 @@ title: Yet another blog about getting rich (while doing GSoC 2015)
 email: gsoc15@larma.de
 description: I participate at Google Summer of Code 2015. AWESOME! Students are encouraged to report progress in a blog. And now guess where you are.
 baseurl: "/gsoc15" # the subpath of your site, e.g. /blog/
-url: "http://mar-v-in.github.io/gsoc15" # the base hostname & protocol for your site
+url: "http://mar-v-in.github.io" # the base hostname & protocol for your site
 github_username:  mar-v-in
 
 # Build settings
