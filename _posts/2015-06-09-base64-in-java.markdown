@@ -1,0 +1,19 @@
+---
+title: Base64 in Java - a hell by design
+layout: post
+category: random-thoughts
+---
+
+Base64. You know this famous byte encoding technique based on 64 ASCII characters? Which is often used to represent binary data like keys to the user? Of course you do.
+
+In most languages, Base64 support is an important feature that is is part of the standard library. Even if it's not part of the standard library, there is a common library used by everyone for it, so you don't need to care. But not in the Java.
+
+In Java, Base64 is not part of the standard library. And as Java does not use shared libraries like other programming languages, you can't rely on that feature either. As a result, applications that require Base64 support often integrate a Base64 implementation (there is a famous, public domain Java class for Base64 provided at [iHarder.net](http://www.iharder.net/)). However given that on Java systems this might result in 20 Base64 implementations in a single runtime, this solution does not seem to be ideal.
+
+Android noticed that problem and added a Base64 implementation in their standard library. `android.util.Base64` provides the full required feature set. However if you're building a Java library for both, desktop Java and Android, you can not rely on this implementation.
+
+With Java 8, the Java designers finally noticed that problem and added `java.util.Base64` to the standard library. Guess what: Up to nobody is using it, because you don't want to loose compatibility with older Java version because of a Base64 implementation.
+
+So the current state is to add work-arounds for this problem. [smack](https://github.com/igniterealtime/Smack) provides different base64 implementations based on the target platform: On Android the Android standard library is used, for Java 7, iHarder's library is injected. This works, but is not nice either.
+
+Or you just skip the usage of Base64 and do not provide any ASCII output of binary at all.
