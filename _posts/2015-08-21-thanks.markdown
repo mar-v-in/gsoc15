@@ -1,0 +1,38 @@
+---
+title: GSoC 2015 is over.
+layout: post
+category: weekly-report
+---
+
+Finally, the Google Summer of Code 2015 concluded. 
+Over 1,000 students - including myself - used the summer to develop amazing open-source software, making our daily life better.
+
+DNSSEC for minidns
+------------------
+I successfully finished my project, to include support DNSSEC in minidns, a popular DNS client library for Java with support for Android.
+Just to summarize my previous posts, here is a list of things developed during the summer:
+
+- Parsing the wire format of various DNS records: DLV, DNSKEY, DS, NSEC, NSEC3, NSEC3PARAM, RRSIG, OPENPGPKEY, OPT, TLSA
+- Creating the wire format for all supported DNS records (required for proper validation)
+- Recursive resolving from the DNS root servers
+- Validating signatures (RRSIG) using RSA and DSA keys and MD5 (deprecated), SHA1, SHA-256 and SHA-512 hashes
+- Validating negative results using NSEC and NSEC3
+- Validating delegation using direct domain chain (DS) or DNSSEC lookaside validation (DLV)
+- Certificate validation using TLSA records (DANE)
+- Include DNSSEC resolving and DANE capabilities as optional features into smack
+
+To ensure correctness of all features, I also added a lot of unit tests to minidns. Due to this I was able to find some relevant bugs in minidns.
+Unfortunately, some of the optionally desired features did not make it into usable state until today. I will further work on adding the following after this years GSoC:
+
+- Validate signatures using ECDSA keys
+- Include DNSSEC resolving, DANE capabilities and OPENPGPKEY DNS record support into OpenKeychain
+
+Thanks
+------
+I'd like to say a warm `thank you`, to everyone involved with the organisation of the GSoC at XSF (which acted as my host organization) or supported me at my project. This includes, but is not limited to:
+
+- Rene Treffer
+- Florian Schmaus
+- Dave Cridland
+- Georg Lukas
+- Kevin Smith
